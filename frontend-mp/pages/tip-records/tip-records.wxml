@@ -1,0 +1,25 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <view wx:if="{{!loading && list.length === 0}}" class="empty">暂无打赏记录</view>
+  <block wx:if="{{!loading && list.length > 0}}">
+    <view wx:for="{{list}}" wx:key="id" class="card order-card">
+      <view class="order-row">
+        <text class="order-label">订单号</text>
+        <text class="order-value mono">{{item.orderNo}}</text>
+      </view>
+      <view class="order-row">
+        <text class="order-label">金额</text>
+        <text class="order-value amount">¥{{item.amountYuan}}</text>
+      </view>
+      <view class="order-row">
+        <text class="order-label">状态</text>
+        <text class="order-value {{item.status === 1 ? 'paid' : 'pending'}}">{{item.statusText}}</text>
+      </view>
+      <view class="order-row">
+        <text class="order-label">时间</text>
+        <text class="order-value">{{item.createTimeStr}}</text>
+      </view>
+    </view>
+  </block>
+  <view wx:if="{{!loading && hasMore}}" class="load-more" bindtap="loadMore">加载更多</view>
+</view>

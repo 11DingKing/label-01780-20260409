@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="card header-card">
+    <text class="section-title">紧急联系人</text>
+    <button class="btn-add" bindtap="showAddForm">+ 添加</button>
+  </view>
+
+  <!-- 添加/编辑表单 -->
+  <view wx:if="{{showAdd}}" class="card form-card">
+    <view class="form-row">
+      <text class="form-label">姓名</text>
+      <input class="form-input" placeholder="联系人姓名" value="{{form.nameEnc}}" data-field="nameEnc" bindinput="onInput"/>
+    </view>
+    <view class="form-row">
+      <text class="form-label">电话</text>
+      <input class="form-input" placeholder="联系电话" type="number" value="{{form.phoneEnc}}" data-field="phoneEnc" bindinput="onInput"/>
+    </view>
+    <view class="form-row">
+      <text class="form-label">关系</text>
+      <input class="form-input" placeholder="如：家人、朋友" value="{{form.relation}}" data-field="relation" bindinput="onInput"/>
+    </view>
+    <view class="form-actions">
+      <button class="btn-cancel" bindtap="cancel">取消</button>
+      <button class="btn-primary btn-save" bindtap="save">{{editId ? '更新' : '保存'}}</button>
+    </view>
+  </view>
+
+  <!-- 联系人列表 -->
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <view wx:if="{{!loading && contacts.length === 0 && !showAdd}}" class="empty">暂无联系人，点击上方添加</view>
+  <block wx:if="{{!loading && contacts.length > 0}}">
+    <view wx:for="{{contacts}}" wx:key="id" class="card contact-card">
+      <view class="contact-info">
+        <text class="contact-name">{{item.nameEnc || '***'}}</text>
+        <text class="contact-relation">{{item.relation || ''}}</text>
+        <text class="contact-phone">{{item.phoneEnc || '***'}}</text>
+      </view>
+      <view class="contact-actions">
+        <text class="action-edit" data-id="{{item.id}}" bindtap="editContact">编辑</text>
+        <text class="action-del" data-id="{{item.id}}" bindtap="deleteContact">删除</text>
+      </view>
+    </view>
+  </block>
+</view>

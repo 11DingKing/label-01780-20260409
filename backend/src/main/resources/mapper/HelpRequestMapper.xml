@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.help.mp.mapper.HelpRequestMapper">
+    <select id="selectNearby" resultType="com.help.mp.entity.HelpRequest">
+        SELECT * FROM help_request
+        WHERE status = #{status}
+        AND (
+            6371 * acos(
+                cos(radians(#{lat})) * cos(radians(latitude)) * cos(radians(longitude) - radians(#{lng}))
+                + sin(radians(#{lat})) * sin(radians(latitude))
+            )
+        ) &lt;= #{radiusKm}
+        ORDER BY publish_time DESC
+        LIMIT #{limit}
+    </select>
+</mapper>

@@ -1,0 +1,13 @@
+<wxs src="../../utils/format.wxs" module="fmt"/>
+<view class="container">
+  <view class="card" wx:for="{{list}}" wx:key="id">
+    <view class="row">
+      <text class="type">{{item.bizType === 'bless' ? '祝福' : (item.bizType === 'share' ? '转发' : '打赏')}}</text>
+      <text class="amount {{item.amount > 0 ? 'inc' : 'dec'}}">{{item.amount > 0 ? '+' : ''}}{{item.amount}} 朵</text>
+    </view>
+    <text class="remark">{{item.remark || '-'}}</text>
+    <text class="time">{{fmt.fmtTime(item.createTime)}}</text>
+  </view>
+  <view wx:if="{{list.length === 0 && !loading}}" class="empty">暂无记录</view>
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+</view>

@@ -1,0 +1,82 @@
+spring:
+  application:
+    name: help-mp-backend
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/help_mp?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: 0
+      timeout: 3000ms
+
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# JWT
+jwt:
+  secret: ${JWT_SECRET:help-mp-jwt-secret-change-in-production-min-32-chars}
+  expire-seconds: 604800
+
+# 微信 (小程序 + 支付 + 公众号)
+wechat:
+  mp:
+    app-id: ${WECHAT_MP_APPID:}
+    app-secret: ${WECHAT_MP_SECRET:}
+  pay:
+    mch-id: ${WECHAT_PAY_MCH_ID:}
+    api-v3-key: ${WECHAT_PAY_API_V3_KEY:}
+    cert-path: ${WECHAT_PAY_CERT_PATH:}
+    notify-url: ${WECHAT_PAY_NOTIFY_URL:}
+    serial-no: ${WECHAT_PAY_SERIAL_NO:}
+  official:
+    app-id: ${WECHAT_OFFICIAL_APPID:}
+    app-secret: ${WECHAT_OFFICIAL_SECRET:}
+    template-id: ${WECHAT_OFFICIAL_TEMPLATE_ID:}
+
+# 业务常量（可扩展）
+app:
+  flower:
+    bless: 1
+    share: 2
+    tip-per-yuan: 1
+  upload:
+    base-url: ${UPLOAD_BASE_URL:http://localhost:8080/upload}
+  encrypt:
+    aes-key: ${AES_KEY:help-mp-aes-key-32bytes-change!!}
+  rate-limit:
+    enabled: ${RATE_LIMIT_ENABLED:true}
+    publish-per-hour: 10
+    interact-per-minute: 30
+  push:
+    reach-rate-threshold: 0.95
+
+logging:
+  level:
+    root: INFO
+    com.help.mp: INFO
+    com.help.mp.service: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

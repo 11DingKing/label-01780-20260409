@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="card">
+    <view class="avatar-section" bindtap="chooseAvatar">
+      <image class="avatar" src="{{avatarUrl || '/images/tab-placeholder.png'}}" mode="aspectFill"/>
+      <text class="avatar-hint">点击更换头像</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="form-row">
+      <text class="form-label">昵称</text>
+      <input class="form-input" placeholder="请输入昵称" value="{{nickName}}" bindinput="onNickInput"/>
+    </view>
+    <view class="form-row">
+      <text class="form-label">手机号</text>
+      <input class="form-input" placeholder="请输入手机号" type="number" value="{{phoneEnc}}" bindinput="onPhoneInput"/>
+    </view>
+    <view class="form-row privacy-row">
+      <text class="form-label">手机匿名</text>
+      <switch checked="{{phoneAnon}}" bindchange="onPhoneAnonChange" color="#E85D3A"/>
+    </view>
+  </view>
+
+  <button class="btn-primary save-btn" loading="{{saving}}" disabled="{{saving}}" bindtap="save">保存</button>
+</view>

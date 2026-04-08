@@ -1,0 +1,12 @@
+.container { padding: 20rpx; }
+.loading, .empty { text-align: center; padding: 80rpx 0; color: #999; font-size: 28rpx; }
+.card { background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 20rpx; }
+.order-card { box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04); }
+.order-row { display: flex; justify-content: space-between; align-items: center; padding: 8rpx 0; }
+.order-label { font-size: 26rpx; color: #999; }
+.order-value { font-size: 26rpx; color: #333; }
+.mono { font-family: monospace; font-size: 24rpx; }
+.amount { font-weight: 600; color: #E85D3A; }
+.paid { color: #10B981; }
+.pending { color: #F59E0B; }
+.load-more { text-align: center; padding: 30rpx 0; color: #E85D3A; font-size: 28rpx; }

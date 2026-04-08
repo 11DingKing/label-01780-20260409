@@ -1,0 +1,47 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+  <view wx:else>
+    <view class="card summary-card">
+      <image class="summary-badge" src="/images/badge-{{currentLevel || 1}}.png" mode="aspectFit"/>
+      <text class="summary-flowers">🌸 {{currentFlowers}} 朵小红花</text>
+      <text class="summary-level">当前等级：Lv.{{currentLevel}}</text>
+    </view>
+
+    <view class="card rule-card">
+      <text class="section-title">晋升规则</text>
+      <view class="rule-items">
+        <view class="rule-item">
+          <text class="rule-icon">🌸</text>
+          <text class="rule-text">祝福 +1朵</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-icon">🔗</text>
+          <text class="rule-text">转发 +2朵</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-icon">💰</text>
+          <text class="rule-text">打赏 1元/朵</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card">
+      <text class="section-title">勋章等级</text>
+      <view wx:for="{{badges}}" wx:key="level" class="badge-row {{item.level === currentLevel ? 'current' : ''}} {{item.owned ? 'owned' : 'locked'}}">
+        <image class="badge-icon" src="/images/badge-{{item.level}}.png" mode="aspectFit"/>
+        <view class="badge-info">
+          <view class="badge-name-row">
+            <text class="badge-name">Lv.{{item.level}} {{item.name}}</text>
+            <text class="badge-need">{{item.minFlowers}}朵</text>
+          </view>
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{currentFlowers >= item.minFlowers ? 100 : (currentFlowers / item.minFlowers * 100)}}%"></view>
+          </view>
+          <text class="badge-progress-text" wx:if="{{!item.owned}}">{{currentFlowers}}/{{item.minFlowers}}</text>
+          <text class="badge-achieved" wx:if="{{item.owned}}">✓ 已达成</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

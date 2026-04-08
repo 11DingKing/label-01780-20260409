@@ -1,0 +1,50 @@
+.container {
+  padding: 24rpx;
+  background: #FFF8F5;
+  min-height: 100vh;
+}
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+}
+.title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+.update-time {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 24rpx;
+}
+.section {
+  margin-bottom: 24rpx;
+}
+.section-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #E85D3A;
+  margin-bottom: 12rpx;
+}
+.section-text {
+  display: block;
+  font-size: 26rpx;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 8rpx;
+}
+.btn-back {
+  margin: 32rpx auto;
+  width: 60%;
+  background: #E85D3A;
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  line-height: 80rpx;
+}

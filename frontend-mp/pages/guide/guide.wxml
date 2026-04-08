@@ -1,0 +1,48 @@
+<view class="container">
+  <swiper class="swiper" current="{{step}}" bindchange="onSwipe">
+    <!-- 步骤1: 欢迎 -->
+    <swiper-item>
+      <view class="step-page">
+        <text class="step-emoji">🤝</text>
+        <text class="step-title">欢迎来到互助求助</text>
+        <text class="step-desc">这里是一个温暖的互助社区，当您遇到紧急情况时，可以快速发布求助信息，获得周围人的帮助。</text>
+      </view>
+    </swiper-item>
+
+    <!-- 步骤2: 发布求助 -->
+    <swiper-item>
+      <view class="step-page">
+        <text class="step-emoji">📢</text>
+        <text class="step-title">一键发布求助</text>
+        <text class="step-desc">只需3步即可发布求助：选择紧急程度 → 描述情况 → 发布。系统会自动获取您的位置，并推送给附近的人。</text>
+      </view>
+    </swiper-item>
+
+    <!-- 步骤3: 互动 -->
+    <swiper-item>
+      <view class="step-page">
+        <text class="step-emoji">🌸</text>
+        <text class="step-title">小红花激励</text>
+        <text class="step-desc">祝福(+1朵)、转发(+2朵)、打赏(1元/朵)等互动行为都能获得小红花。累计小红花可晋升守护者勋章。</text>
+      </view>
+    </swiper-item>
+
+    <!-- 步骤4: 勋章 -->
+    <swiper-item>
+      <view class="step-page">
+        <text class="step-emoji">🏅</text>
+        <text class="step-title">守护者勋章</text>
+        <text class="step-desc">从初级守护者到荣耀守护者，共5个等级。您的勋章会展示在个人主页和求助页面，彰显您的爱心。</text>
+        <text class="privacy-link" bindtap="goPrivacy">查看隐私政策</text>
+        <button class="btn-start" bindtap="start">开始使用</button>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <view class="bottom-bar">
+    <text class="skip" bindtap="start" wx:if="{{step < 3}}">跳过</text>
+    <view class="dots">
+      <view wx:for="{{4}}" wx:key="*this" class="dot {{step === index ? 'active' : ''}}"></view>
+    </view>
+  </view>
+</view>

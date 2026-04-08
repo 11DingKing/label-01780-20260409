@@ -1,0 +1,47 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# Backend (Java / Maven)
+backend/target/
+backend/*.jar
+backend/*.war
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/mvnw
+backend/mvnw.cmd
+
+# Frontend (Node)
+node_modules/
+frontend-admin/node_modules/
+frontend-mp/node_modules/
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+frontend-admin/dist/
+*.local
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# Upload (runtime)
+backend/upload/
+
+# Build / Docker
+*.log
+
+# Misc
+*.bak
+*.tmp

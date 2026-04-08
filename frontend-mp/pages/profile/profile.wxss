@@ -1,0 +1,36 @@
+.profile-card { text-align: center; padding: 40rpx; }
+.profile-card .avatar { width: 160rpx; height: 160rpx; border-radius: 50%; display: block; margin: 0 auto 16rpx; }
+.profile-card .avatar-text.large { width: 160rpx; height: 160rpx; border-radius: 50%; margin: 0 auto 16rpx; background: linear-gradient(135deg, #E85D3A, #F5A623); color: #fff; font-size: 64rpx; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.profile-card .nick { font-size: 36rpx; font-weight: 600; display: block; margin-bottom: 16rpx; }
+.flower-badge { display: flex; justify-content: center; align-items: center; gap: 16rpx; color: var(--text-secondary); font-size: 26rpx; }
+.badge-tag { display: flex; align-items: center; gap: 4rpx; }
+.badge-mini { width: 32rpx; height: 32rpx; }
+.btn-edit { margin-top: 20rpx; font-size: 26rpx; padding: 8rpx 32rpx; background: var(--bg); color: var(--primary); border-radius: 32rpx; border: 2rpx solid var(--primary); display: inline-block; line-height: 1.6; }
+
+/* 勋章 */
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16rpx; }
+.badge-list { display: flex; gap: 12rpx; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.badge-item { flex-shrink: 0; width: 120rpx; text-align: center; padding: 16rpx 8rpx; background: var(--bg); border-radius: 12rpx; transition: all 0.2s; }
+.badge-item.locked { opacity: 0.4; }
+.badge-item.owned { opacity: 1; }
+.badge-icon { width: 48rpx; height: 48rpx; display: block; margin: 0 auto 6rpx; }
+.badge-name { font-weight: 600; font-size: 22rpx; display: block; }
+.badge-desc { font-size: 20rpx; color: var(--text-hint); display: block; margin-top: 4rpx; }
+
+/* 菜单 */
+.menu-card { padding: 0; }
+.menu-item { display: flex; justify-content: space-between; align-items: center; padding: 28rpx 32rpx; border-bottom: 1rpx solid var(--border); font-size: 28rpx; }
+.menu-item:last-child { border-bottom: none; }
+.menu-item:active { background: var(--bg); }
+.arrow { color: var(--text-hint); font-size: 32rpx; }
+
+/* 感谢 */
+.thank-item { padding: 16rpx 0; border-bottom: 1rpx solid var(--border); }
+.thank-item:last-child { border-bottom: none; }
+.thank-text { font-size: 26rpx; color: var(--text-secondary); display: block; }
+.thank-time { font-size: 22rpx; color: var(--text-hint); display: block; margin-top: 4rpx; }
+
+.link { color: var(--primary); font-size: 26rpx; }
+.logout { margin-top: 48rpx; text-align: center; color: var(--text-hint); font-size: 28rpx; padding: 24rpx; }
+.logout:active { color: var(--primary); }
+.loading { text-align: center; padding: 48rpx; }

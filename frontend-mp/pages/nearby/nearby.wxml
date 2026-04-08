@@ -1,0 +1,30 @@
+<wxs src="../../utils/format.wxs" module="fmt"/>
+<view class="container">
+  <view class="card header">
+    <text class="section-title">附近的求助</text>
+    <text class="hint">基于您的位置展示</text>
+  </view>
+  <view wx:if="{{locationTip}}" class="location-tip">{{locationTip}}</view>
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <view wx:if="{{!loading && list.length === 0}}" class="empty">附近暂无求助</view>
+  <block wx:if="{{!loading && list.length > 0}}">
+    <view wx:for="{{list}}" wx:key="id" class="card item" data-id="{{item.id}}" bindtap="goDetail">
+      <view class="help-meta">
+        <view class="avatar-text">{{fmt.avatarText(item.publisherNickName)}}</view>
+        <view class="meta-right">
+          <text class="nick">{{item.publisherNickName || '匿名'}}</text>
+          <text class="urgency urgency-{{item.urgencyLevel === 1 ? 'high' : (item.urgencyLevel === 2 ? 'mid' : 'low')}}">{{item.urgencyLevel === 1 ? '高' : (item.urgencyLevel === 2 ? '中' : '低')}}</text>
+        </view>
+      </view>
+      <text class="content-preview">{{item.content}}</text>
+      <view class="item-footer">
+        <text class="addr">{{item.address || '位置已隐藏'}}</text>
+        <text class="time">{{fmt.fmtTime(item.publishTime)}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view class="fab" bindtap="goPublish">
+    <text class="fab-text">+ 发布求助</text>
+  </view>
+</view>

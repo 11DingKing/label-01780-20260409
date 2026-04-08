@@ -1,0 +1,61 @@
+<view class="container">
+  <view class="card">
+    <text class="title">隐私政策</text>
+    <text class="update-time">更新日期：2025年1月1日</text>
+
+    <view class="section">
+      <text class="section-title">一、信息收集与使用</text>
+      <text class="section-text">本小程序（"互助求助"）依据《中华人民共和国个人信息保护法》及相关法律法规，收集和使用您的个人信息。我们仅收集实现服务功能所必需的最少信息：</text>
+      <text class="section-text">1. 微信昵称与头像：用于展示您的个人主页。</text>
+      <text class="section-text">2. 位置信息：用于发布求助时标注位置，以及向附近用户推送求助信息。仅在您主动发布求助时获取，您可选择匿名位置。</text>
+      <text class="section-text">3. 手机号（选填）：用于紧急联系人功能，经 AES-256-GCM 加密后存储。</text>
+      <text class="section-text">4. 紧急联系人信息：姓名和电话均经加密存储，仅在关联求助中展示给查看者。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">二、数据安全措施</text>
+      <text class="section-text">1. 加密存储：手机号、联系人姓名和电话均采用 AES-256-GCM 算法加密存储，密钥由服务端安全管理。</text>
+      <text class="section-text">2. 匿名化处理：您可选择匿名发布位置信息，系统将对地址进行模糊化处理。</text>
+      <text class="section-text">3. 传输安全：所有数据传输均通过 HTTPS 加密通道。</text>
+      <text class="section-text">4. 访问控制：仅授权人员可访问后台管理系统，所有操作均有日志记录。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">三、信息共享与披露</text>
+      <text class="section-text">我们不会将您的个人信息出售、出租或以其他方式提供给第三方，除非：</text>
+      <text class="section-text">1. 获得您的明确同意。</text>
+      <text class="section-text">2. 根据法律法规要求或政府主管部门的强制性要求。</text>
+      <text class="section-text">3. 为保护您或他人的人身安全等紧急情况。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">四、您的权利</text>
+      <text class="section-text">根据《个人信息保护法》，您享有以下权利：</text>
+      <text class="section-text">1. 查阅权：您可在"我的"页面查看您的个人信息。</text>
+      <text class="section-text">2. 更正权：您可随时修改昵称、头像等个人资料。</text>
+      <text class="section-text">3. 删除权：您可删除紧急联系人信息，也可联系我们删除账户数据。</text>
+      <text class="section-text">4. 撤回同意权：您可随时在系统设置中关闭位置授权。</text>
+      <text class="section-text">5. 可携带权：您可联系我们导出您的个人数据。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">五、位置信息说明</text>
+      <text class="section-text">本小程序在以下场景需要获取您的位置信息：</text>
+      <text class="section-text">1. 发布求助：标注求助发生地点，便于附近用户提供帮助。</text>
+      <text class="section-text">2. 附近求助：展示您周边的求助信息。</text>
+      <text class="section-text">您可以选择拒绝授权位置信息，但部分功能将受限。位置信息仅用于上述功能，不会用于其他目的。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">六、未成年人保护</text>
+      <text class="section-text">我们重视未成年人个人信息保护。如您为未满14周岁的未成年人，请在监护人陪同下使用本小程序，并由监护人同意本隐私政策。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">七、联系我们</text>
+      <text class="section-text">如您对本隐私政策有任何疑问或需要行使上述权利，请通过小程序内"我的"页面联系我们。</text>
+    </view>
+  </view>
+
+  <button class="btn-back" bindtap="goBack">返回</button>
+</view>

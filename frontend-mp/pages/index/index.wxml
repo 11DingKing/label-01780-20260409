@@ -1,0 +1,52 @@
+<wxs src="../../utils/format.wxs" module="fmt"/>
+<view class="container">
+  <view class="header-card card">
+    <text class="section-title">最新求助</text>
+    <text class="hint">一键帮助身边的人</text>
+  </view>
+
+  <view wx:if="{{list.length === 0 && !loading}}" class="empty">暂无求助信息</view>
+
+  <view wx:for="{{list}}" wx:key="id" class="card help-item" data-id="{{item.id}}" bindtap="goDetail">
+    <view class="help-meta">
+      <view class="avatar-text">{{fmt.avatarText(item.publisherNickName)}}</view>
+      <view class="meta-right">
+        <view class="nick-row">
+          <text class="nick">{{item.publisherNickName || '匿名'}}</text>
+          <image wx:if="{{item.publisherBadgeLevel > 0}}" class="badge-icon" src="/images/badge-{{item.publisherBadgeLevel}}.png" mode="aspectFit"/>
+          <text wx:if="{{item.publisherBadgeLevel > 0}}" class="badge-label">Lv.{{item.publisherBadgeLevel}}</text>
+        </view>
+        <text class="time">{{fmt.fmtTime(item.publishTime)}}</text>
+      </view>
+      <view class="urgency urgency-{{item.urgencyLevel === 1 ? 'high' : (item.urgencyLevel === 2 ? 'mid' : 'low')}}">
+        {{item.urgencyLevel === 1 ? '高' : (item.urgencyLevel === 2 ? '中' : '低')}}
+      </view>
+    </view>
+    <text class="content-preview">{{item.content}}</text>
+    <view wx:if="{{item.address}}" class="addr">{{item.address}}</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <view wx:if="{{!loading && !hasMore && list.length > 0}}" class="nomore">没有更多了</view>
+
+  <view class="fab" bindtap="goPublish">
+    <text class="fab-icon">+</text>
+    <text class="fab-text">发布求助</text>
+  </view>
+
+  <!-- 首次使用功能引导提示 -->
+  <view class="guide-overlay" wx:if="{{showGuide}}" bindtap="dismissGuide">
+    <view class="guide-bubble guide-bubble-fab">
+      <text class="guide-text">点击这里可以快速发布求助</text>
+    </view>
+    <view class="guide-bubble guide-bubble-list">
+      <text class="guide-text">点击卡片查看详情，可以祝福、转发、打赏</text>
+    </view>
+    <view class="guide-bubble guide-bubble-tab">
+      <text class="guide-text">底部切换：首页 / 发布 / 附近 / 我的</text>
+    </view>
+    <view class="guide-dismiss">
+      <text class="guide-dismiss-text">点击任意位置关闭引导</text>
+    </view>
+  </view>
+</view>

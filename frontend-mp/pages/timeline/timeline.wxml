@@ -1,0 +1,48 @@
+<wxs src="../../utils/format.wxs" module="fmt"/>
+<view class="container">
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab {{tab === 'auto' ? 'tab-active' : ''}}" bindtap="switchTab" data-tab="auto">系统记录</view>
+    <view class="tab {{tab === 'notes' ? 'tab-active' : ''}}" bindtap="switchTab" data-tab="notes">我的经历</view>
+  </view>
+
+  <!-- 系统自动记录 -->
+  <view wx:if="{{tab === 'auto'}}">
+    <view class="card" wx:for="{{list}}" wx:key="id">
+      <text class="type">{{item.type === 'bless' ? '🌸 祝福' : (item.type === 'share' ? '🔗 转发' : '💰 打赏')}} 了求助</text>
+      <text class="content-preview">{{item.helpContent}}</text>
+      <text class="time">{{fmt.fmtTime(item.createTime)}}</text>
+    </view>
+    <view wx:if="{{list.length === 0 && !loading}}" class="empty">暂无记录</view>
+  </view>
+
+  <!-- 用户手动管理的经历 -->
+  <view wx:if="{{tab === 'notes'}}">
+    <button class="btn-add" bindtap="showAddNote">+ 发布助人经历</button>
+    <view class="card" wx:for="{{notes}}" wx:key="id">
+      <view class="note-header">
+        <text class="note-title">{{item.title}}</text>
+        <view class="note-actions">
+          <text class="note-edit" data-id="{{item.id}}" data-idx="{{index}}" bindtap="editNote">编辑</text>
+          <text class="note-del" data-id="{{item.id}}" bindtap="deleteNote">删除</text>
+        </view>
+      </view>
+      <text class="note-content">{{item.content}}</text>
+      <text class="time">{{fmt.fmtTime(item.createTime)}}</text>
+    </view>
+    <view wx:if="{{notes.length === 0 && !notesLoading}}" class="empty">暂无经历，点击上方按钮发布</view>
+  </view>
+
+  <view wx:if="{{loading || notesLoading}}" class="loading">加载中...</view>
+
+  <!-- 发布/编辑经历弹窗 -->
+  <view class="modal-mask" wx:if="{{showNoteForm}}" bindtap="hideNoteForm"></view>
+  <view class="modal-panel {{showNoteForm ? 'show' : ''}}">
+    <text class="modal-title">{{editingNoteId ? '编辑经历' : '发布助人经历'}}</text>
+    <input class="modal-input" placeholder="标题" value="{{noteTitle}}" bindinput="onNoteTitle"/>
+    <textarea class="modal-textarea" placeholder="描述您的助人经历..." value="{{noteContent}}" bindinput="onNoteContent" maxlength="500"/>
+    <button class="btn-primary modal-btn" bindtap="submitNote" loading="{{noteSubmitting}}">
+      {{editingNoteId ? '保存' : '发布'}}
+    </button>
+  </view>
+</view>

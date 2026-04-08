@@ -1,0 +1,64 @@
+<wxs src="../../utils/format.wxs" module="fmt"/>
+<view class="container" wx:if="{{!loading && help}}">
+  <view class="card">
+    <view class="help-meta">
+      <view class="avatar-text">{{fmt.avatarText(help.publisherNickName)}}</view>
+      <view class="meta-right">
+        <view class="nick-row">
+          <text class="nick">{{help.publisherNickName || '匿名'}}</text>
+          <image wx:if="{{help.publisherBadgeLevel > 0}}" class="badge-icon" src="/images/badge-{{help.publisherBadgeLevel}}.png" mode="aspectFit"/>
+          <text wx:if="{{help.publisherBadgeLevel > 0}}" class="badge-label">Lv.{{help.publisherBadgeLevel}}</text>
+        </view>
+        <view class="urgency urgency-{{help.urgencyLevel === 1 ? 'high' : (help.urgencyLevel === 2 ? 'mid' : 'low')}}">{{help.urgencyLevel === 1 ? '高' : (help.urgencyLevel === 2 ? '中' : '低')}} 紧急</view>
+      </view>
+    </view>
+    <text class="content">{{help.content}}</text>
+    <view wx:if="{{help.address && help.addressAnon !== 1}}" class="addr">📍 {{help.address}}</view>
+    <text class="time">{{fmt.fmtTime(help.publishTime)}}</text>
+  </view>
+  <view class="card" wx:if="{{contact}}">
+    <text class="section-label">📞 紧急联系人</text>
+    <view class="contact-info">
+      <text class="contact-detail">{{contact.relation || '联系人'}}：{{contact.nameEnc || '***'}}</text>
+      <text class="contact-phone" wx:if="{{contact.phoneEnc}}">电话：{{contact.phoneEnc}}</text>
+    </view>
+  </view>
+  <view class="card" wx:if="{{images.length > 0}}">
+    <view class="images">
+      <image wx:for="{{images}}" wx:key="id" class="img" src="{{item.url}}" mode="widthFix" bindtap="previewImage" data-url="{{item.url}}"/>
+    </view>
+  </view>
+  <view style="height:120rpx"></view>
+  <view class="bottom-actions">
+    <view class="act-item {{hasBlessed ? 'act-done' : ''}}" bindtap="bless">
+      <text class="act-icon">🌸</text>
+      <text class="act-label">{{hasBlessed ? '已祝福' : '祝福'}}</text>
+    </view>
+    <button class="act-item act-share-btn {{hasShared ? 'act-done' : ''}}" open-type="share" bindtap="share">
+      <text class="act-icon">🔗</text>
+      <text class="act-label">{{hasShared ? '已转发' : '转发'}}</text>
+    </button>
+    <view class="act-item act-tip" bindtap="showTipPanel">
+      <text class="act-icon">💰</text>
+      <text class="act-label">打赏</text>
+    </view>
+  </view>
+  <view class="flower-rain" wx:if="{{showFlowerRain}}">
+    <text class="flower-item" wx:for="{{flowerItems}}" wx:key="index" style="left:{{item.left}}%;animation-delay:{{item.delay}}s">🌸</text>
+  </view>
+  <view class="tip-mask" wx:if="{{showTip}}" bindtap="hideTipPanel"></view>
+  <view class="tip-panel {{showTip ? 'show' : ''}}">
+    <text class="tip-title">选择打赏金额</text>
+    <view class="tip-amounts">
+      <view wx:for="{{tipAmounts}}" wx:key="*this" class="tip-amount {{selectedAmount === item ? 'selected' : ''}}" data-amount="{{item}}" bindtap="selectAmount">¥{{item}}</view>
+    </view>
+    <view class="tip-custom">
+      <text class="tip-label">自定义金额</text>
+      <input class="tip-input" type="digit" placeholder="1-100" value="{{customAmount}}" bindinput="onCustomAmount"/>
+      <text class="tip-unit">元</text>
+    </view>
+    <view class="tip-info">打赏 ¥{{finalAmount}} 可获得 {{finalAmount}} 朵小红花</view>
+    <button class="btn-primary tip-confirm" loading="{{tipLoading}}" bindtap="confirmTip">确认打赏</button>
+  </view>
+</view>
+<view wx:if="{{loading}}" class="loading">加载中...</view>

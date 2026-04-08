@@ -1,0 +1,18 @@
+.header-card { display: flex; justify-content: space-between; align-items: center; }
+.btn-add { font-size: 26rpx; padding: 8rpx 24rpx; background: var(--primary); color: #fff; border-radius: 8rpx; line-height: 1.6; }
+.form-card { margin-top: 0; }
+.form-row { display: flex; align-items: center; padding: 16rpx 0; border-bottom: 1rpx solid var(--border); }
+.form-label { width: 120rpx; font-size: 26rpx; color: var(--text-secondary); }
+.form-input { flex: 1; font-size: 28rpx; padding: 8rpx; }
+.form-actions { display: flex; gap: 16rpx; margin-top: 24rpx; }
+.btn-cancel { flex: 1; font-size: 28rpx; background: var(--bg); color: var(--text-secondary); border-radius: 8rpx; }
+.btn-save { flex: 1; font-size: 28rpx; }
+.contact-card { display: flex; justify-content: space-between; align-items: center; }
+.contact-info { flex: 1; }
+.contact-name { font-weight: 600; font-size: 30rpx; display: block; }
+.contact-relation { font-size: 24rpx; color: var(--text-hint); margin-left: 8rpx; }
+.contact-phone { font-size: 26rpx; color: var(--text-secondary); display: block; margin-top: 4rpx; }
+.contact-actions { display: flex; gap: 16rpx; }
+.action-edit { color: var(--primary); font-size: 26rpx; }
+.action-del { color: #E85D3A; font-size: 26rpx; }
+.loading, .empty { text-align: center; padding: 48rpx; color: var(--text-hint); }

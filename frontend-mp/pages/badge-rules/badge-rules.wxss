@@ -1,0 +1,25 @@
+.summary-card { text-align: center; padding: 40rpx 32rpx; }
+.summary-badge { width: 120rpx; height: 120rpx; display: block; margin: 0 auto 16rpx; }
+.summary-flowers { font-size: 40rpx; font-weight: 600; color: var(--primary); display: block; }
+.summary-level { font-size: 26rpx; color: var(--text-secondary); margin-top: 8rpx; display: block; }
+
+.rule-card { padding: 24rpx 32rpx; }
+.rule-items { display: flex; justify-content: space-around; margin-top: 16rpx; }
+.rule-item { display: flex; flex-direction: column; align-items: center; gap: 6rpx; }
+.rule-icon { font-size: 36rpx; }
+.rule-text { font-size: 24rpx; color: var(--text-secondary); }
+
+.badge-row { display: flex; align-items: center; padding: 24rpx 0; border-bottom: 1rpx solid var(--border); }
+.badge-row:last-child { border-bottom: none; }
+.badge-row.current { background: #FFF8F5; border-radius: 12rpx; padding: 24rpx 16rpx; margin: 8rpx -16rpx; }
+.badge-row.locked .badge-icon { opacity: 0.35; }
+.badge-icon { width: 72rpx; height: 72rpx; margin-right: 20rpx; flex-shrink: 0; }
+.badge-info { flex: 1; min-width: 0; }
+.badge-name-row { display: flex; justify-content: space-between; align-items: center; }
+.badge-name { font-weight: 600; font-size: 28rpx; }
+.badge-need { font-size: 24rpx; color: var(--text-hint); }
+.progress-bar { height: 10rpx; background: #f0f0f0; border-radius: 5rpx; margin-top: 10rpx; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #E85D3A, #F5A623); border-radius: 5rpx; min-width: 4rpx; }
+.badge-progress-text { font-size: 22rpx; color: var(--text-hint); margin-top: 6rpx; display: block; }
+.badge-achieved { font-size: 22rpx; color: #4CAF50; font-weight: 600; margin-top: 6rpx; display: block; }
+.loading { text-align: center; padding: 48rpx; color: var(--text-hint); }

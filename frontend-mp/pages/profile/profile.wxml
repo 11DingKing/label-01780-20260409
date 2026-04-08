@@ -1,0 +1,75 @@
+<wxs src="../../utils/format.wxs" module="fmt"/>
+<view class="container">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+  <view wx:else>
+    <!-- 用户信息卡片 -->
+    <view class="card profile-card">
+      <image wx:if="{{user.avatarUrl && user.avatarUrl != '/images/tab-placeholder.png'}}" class="avatar" src="{{user.avatarUrl}}" mode="aspectFill"/>
+      <view wx:if="{{!user.avatarUrl || user.avatarUrl == '/images/tab-placeholder.png'}}" class="avatar-text large">{{fmt.avatarText(user.nickName)}}</view>
+      <text class="nick">{{user.nickName || '未设置昵称'}}</text>
+      <view class="flower-badge">
+        <text class="flowers">🌸 {{summary.redFlowerTotal || 0}} 朵小红花</text>
+        <view class="badge-tag" wx:if="{{summary.badgeLevel > 0}}">
+          <image class="badge-mini" src="/images/badge-{{summary.badgeLevel}}.png" mode="aspectFit"/>
+          <text class="badge-level">Lv.{{summary.badgeLevel}}</text>
+        </view>
+      </view>
+      <button class="btn-edit" bindtap="goEditProfile">编辑资料</button>
+    </view>
+
+    <!-- 荣誉体系 -->
+    <view class="card">
+      <view class="section-header">
+        <text class="section-title">荣誉勋章</text>
+        <text class="link" bindtap="goBadgeRule">查看晋升规则 ›</text>
+      </view>
+      <view class="badge-list">
+        <view wx:for="{{badges}}" wx:key="level" class="badge-item {{item.owned ? 'owned' : 'locked'}}">
+          <image class="badge-icon" src="{{item.iconUrl || '/images/tab-placeholder.png'}}" mode="aspectFit"/>
+          <text class="badge-name">{{item.name}}</text>
+          <text class="badge-desc">{{item.description || ('🌸×' + item.minFlowers)}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 功能入口 -->
+    <view class="card menu-card">
+      <view class="menu-item" bindtap="goFlowerLog">
+        <text>🌸 小红花明细</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="goTimeline">
+        <text>📋 助人经历</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="goContacts">
+        <text>📞 紧急联系人</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="goMyHelps">
+        <text>📝 我的求助</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="goTipRecords">
+        <text>💰 打赏记录</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="goPrivacy">
+        <text>🔒 隐私政策</text>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 收到的感谢 -->
+    <view class="card" wx:if="{{thanks.length > 0}}">
+      <text class="section-title">收到的感谢</text>
+      <view wx:for="{{thanks}}" wx:key="id" class="thank-item">
+        <text class="thank-text">{{item.fromUserNickName || '用户'}} 对您的求助进行了 {{item.type === 'bless' ? '祝福 🌸' : (item.type === 'share' ? '转发 🔗' : '打赏 💰')}}</text>
+        <text class="thank-time">{{fmt.fmtTime(item.createTime)}}</text>
+      </view>
+    </view>
+
+    <view class="logout" bindtap="logout">退出登录</view>
+  </view>
+</view>

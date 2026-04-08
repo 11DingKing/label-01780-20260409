@@ -1,0 +1,28 @@
+.header .hint { color: var(--text-hint); font-size: 24rpx; }
+.help-meta { display: flex; align-items: center; margin-bottom: 12rpx; }
+.avatar { width: 64rpx; height: 64rpx; border-radius: 50%; margin-right: 16rpx; }
+.avatar-text { width: 64rpx; height: 64rpx; border-radius: 50%; margin-right: 16rpx; background: linear-gradient(135deg, #E85D3A, #F5A623); color: #fff; font-size: 28rpx; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.meta-right { flex: 1; }
+.nick { font-weight: 600; }
+.urgency { font-size: 22rpx; padding: 4rpx 12rpx; border-radius: 8rpx; margin-left: 8rpx; }
+.content-preview { display: block; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.addr { font-size: 24rpx; color: var(--text-hint); margin-top: 8rpx; display: block; }
+.loading, .empty { text-align: center; padding: 48rpx; color: var(--text-hint); }
+.location-tip { text-align: center; font-size: 24rpx; color: #F5A623; padding: 12rpx 24rpx; background: #FFF8F0; border-radius: 8rpx; margin-bottom: 16rpx; }
+.item-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8rpx; }
+.time { font-size: 22rpx; color: var(--text-hint); }
+
+/* 悬浮发布按钮 */
+.fab {
+  position: fixed; right: 32rpx; bottom: 120rpx; z-index: 50;
+  background: linear-gradient(135deg, #E85D3A 0%, #F5A623 100%);
+  color: #fff; padding: 28rpx 40rpx; border-radius: 48rpx;
+  box-shadow: 0 8rpx 32rpx rgba(232,93,58,0.45);
+  animation: fabPulse 2s ease-in-out infinite;
+}
+.fab-text { font-size: 30rpx; font-weight: 700; letter-spacing: 2rpx; }
+.fab:active { opacity: 0.85; transform: scale(0.95); }
+@keyframes fabPulse {
+  0%, 100% { box-shadow: 0 8rpx 32rpx rgba(232,93,58,0.45); }
+  50% { box-shadow: 0 12rpx 48rpx rgba(232,93,58,0.7); }
+}

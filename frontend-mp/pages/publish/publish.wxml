@@ -1,0 +1,80 @@
+<view class="container">
+  <!-- 3步发布流程指示器 -->
+  <view class="step-bar">
+    <view class="step {{step >= 1 ? 'step-active' : ''}}">
+      <view class="step-num">1</view>
+      <text class="step-text">选择紧急程度</text>
+    </view>
+    <view class="step-line {{step >= 2 ? 'line-active' : ''}}"></view>
+    <view class="step {{step >= 2 ? 'step-active' : ''}}">
+      <view class="step-num">2</view>
+      <text class="step-text">描述情况</text>
+    </view>
+    <view class="step-line {{step >= 3 ? 'line-active' : ''}}"></view>
+    <view class="step {{step >= 3 ? 'step-active' : ''}}">
+      <view class="step-num">3</view>
+      <text class="step-text">发布</text>
+    </view>
+  </view>
+
+  <!-- 步骤1: 紧急程度（必填，首要操作） -->
+  <view class="card">
+    <text class="label">第1步：选择紧急程度 *</text>
+    <view class="urgency-row">
+      <view class="urgency-opt {{urgencyLevel === 1 ? 'active-high' : ''}}" bindtap="setUrgency" data-level="1">🔴 高</view>
+      <view class="urgency-opt {{urgencyLevel === 2 ? 'active-mid' : ''}}" bindtap="setUrgency" data-level="2">🟠 中</view>
+      <view class="urgency-opt {{urgencyLevel === 3 ? 'active-low' : ''}}" bindtap="setUrgency" data-level="3">🟢 低</view>
+    </view>
+  </view>
+
+  <!-- 步骤2: 描述情况 -->
+  <view class="card">
+    <text class="label">第2步：描述情况 *</text>
+    <textarea class="textarea" placeholder="请简要描述需要帮助的内容" value="{{content}}" bindinput="onContentInput" maxlength="500"/>
+    <!-- 图片（内嵌在描述区域，选填） -->
+    <view class="images" wx:if="{{imageUrls.length > 0 || true}}">
+      <view wx:for="{{imageUrls}}" wx:key="*this" class="img-wrap">
+        <image class="thumb" src="{{item}}" mode="aspectFill"/>
+        <view class="del" data-idx="{{index}}" bindtap="removeImage">×</view>
+      </view>
+      <view wx:if="{{imageUrls.length < 9}}" class="add-img" bindtap="chooseImage">📷 图片</view>
+    </view>
+  </view>
+
+  <!-- 步骤3: 发布（位置自动获取，联系人可选） -->
+  <view class="card">
+    <text class="label">第3步：确认发布</text>
+    <!-- 位置信息（自动获取，可调整） -->
+    <view class="location-row" wx:if="{{latitude}}">
+      <text class="addr-text">📍 {{address || '已获取位置'}}</text>
+      <switch class="anon-switch" checked="{{addressAnon}}" bindchange="onAnonChange" color="#E85D3A"/>
+      <text class="anon-label">匿名</text>
+    </view>
+    <view wx:else class="location-row">
+      <text class="addr-text hint-text">📍 未获取位置</text>
+      <button class="btn-small" bindtap="getLocation">获取位置</button>
+    </view>
+    <!-- 紧急联系人（折叠，选填） -->
+    <view class="contact-section">
+      <view class="contact-header" bindtap="toggleContact">
+        <text class="contact-toggle-label">📞 紧急联系人（选填）</text>
+        <text class="arrow">{{showContact ? '∨' : '›'}}</text>
+      </view>
+      <view wx:if="{{showContact}}">
+        <view wx:if="{{contacts.length > 0}}" class="contact-list">
+          <view wx:for="{{contacts}}" wx:key="id" class="contact-item {{selectedContactId === item.id ? 'selected' : ''}}"
+                data-id="{{item.id}}" bindtap="selectContact">
+            <text class="contact-name">{{item.relation || '联系人'}} - {{item.nameEnc || '***'}}</text>
+            <text class="contact-check" wx:if="{{selectedContactId === item.id}}">✓</text>
+          </view>
+        </view>
+        <view wx:else class="empty-hint">
+          <text>暂无联系人，</text>
+          <text class="link" bindtap="goManageContacts">去添加</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <button class="btn-primary submit-btn" loading="{{submitting}}" disabled="{{submitting}}" bindtap="submit">发布求助</button>
+</view>

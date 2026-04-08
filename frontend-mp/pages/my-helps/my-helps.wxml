@@ -1,0 +1,18 @@
+<wxs src="../../utils/format.wxs" module="fmt"/>
+<view class="container">
+  <view wx:if="{{list.length === 0 && !loading}}" class="empty">暂无求助记录</view>
+  <view wx:for="{{list}}" wx:key="id" class="card">
+    <view class="help-row" data-id="{{item.id}}" bindtap="goDetail">
+      <view class="urgency urgency-{{item.urgencyLevel === 1 ? 'high' : (item.urgencyLevel === 2 ? 'mid' : 'low')}}">
+        {{item.urgencyLevel === 1 ? '高' : (item.urgencyLevel === 2 ? '中' : '低')}}
+      </view>
+      <text class="content-preview">{{item.content}}</text>
+      <text class="status">{{item.status === 1 ? '进行中' : '已关闭'}}</text>
+    </view>
+    <view class="meta-row">
+      <text class="time">{{fmt.fmtTime(item.publishTime)}}</text>
+      <text wx:if="{{item.status === 1}}" class="close-btn" data-id="{{item.id}}" catchtap="closeHelp">关闭</text>
+    </view>
+  </view>
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+</view>

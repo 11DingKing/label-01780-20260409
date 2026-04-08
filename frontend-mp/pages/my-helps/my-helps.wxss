@@ -1,0 +1,11 @@
+.help-row { display: flex; align-items: center; gap: 12rpx; }
+.urgency { font-size: 22rpx; padding: 4rpx 12rpx; border-radius: 8rpx; }
+.urgency-high { background: #FDECEA; color: #E85D3A; }
+.urgency-mid { background: #FFF3E0; color: #F5A623; }
+.urgency-low { background: #E8F5E9; color: #7ED321; }
+.content-preview { flex: 1; font-size: 28rpx; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.status { font-size: 24rpx; color: var(--text-hint); }
+.meta-row { display: flex; justify-content: space-between; align-items: center; margin-top: 12rpx; }
+.time { font-size: 24rpx; color: var(--text-hint); }
+.close-btn { font-size: 24rpx; color: var(--primary); padding: 4rpx 16rpx; border: 1rpx solid var(--primary); border-radius: 8rpx; }
+.empty, .loading { text-align: center; padding: 48rpx; color: var(--text-hint); }

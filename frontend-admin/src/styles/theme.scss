@@ -1,0 +1,11 @@
+@use "sass:math";
+$primary: #E85D3A;
+$primary-light: #F5A623;
+
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: (
+    'primary': (
+      'base': $primary,
+    ),
+  ),
+);

@@ -1,0 +1,93 @@
+# 多节点集群部署配置 — 支撑 10000+ 并发在线
+# 使用方式: docker compose -f docker-compose.yml -f docker-compose.cluster.yml up -d
+
+services:
+  # Nginx 负载均衡入口
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-cluster.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - backend-2
+      - backend-3
+
+  # 后端节点 1（来自 docker-compose.yml 的 backend）
+  backend:
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1G
+
+  # 后端节点 2
+  backend-2:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SERVER_PORT: 8080
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1G
+
+  # 后端节点 3
+  backend-3:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SERVER_PORT: 8080
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1G
+
+  # MySQL 主库资源限制
+  mysql:
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+    command: >
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --max-connections=500
+      --innodb-buffer-pool-size=1G
+
+  # Redis 资源限制
+  redis:
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
